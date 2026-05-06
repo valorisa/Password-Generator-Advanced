@@ -16,11 +16,11 @@ def print_header():
     print("\n" + "=" * 50)
     print("   GÉNÉRATEUR DE MOTS DE PASSE SÉCURISÉS")
     print("=" * 50)
-    print(f"\nContraintes appliquées :")
-    print(f"  - Minimum 9 chiffres")
-    print(f"  - Minimum 9 caractères spéciaux")
-    print(f"  - Au moins 1 lettre minuscule")
-    print(f"  - Au moins 1 lettre majuscule")
+    print("\nContraintes appliquées :")
+    print("  - Minimum 9 chiffres")
+    print("  - Minimum 9 caractères spéciaux")
+    print("  - Au moins 1 lettre minuscule")
+    print("  - Au moins 1 lettre majuscule")
     print(f"  - Longueur minimale : {MIN_LENGTH} caractères")
     print()
 
@@ -58,7 +58,7 @@ def get_count() -> int:
 
 
 def display_password(password: str):
-    print(f"\n  Mot de passe généré :")
+    print("\n  Mot de passe généré :")
     print(f"  {password}")
     print(f"  Longueur : {len(password)} caractères")
 
@@ -67,7 +67,7 @@ def display_password(password: str):
     lower = sum(1 for c in password if c.islower())
     upper = sum(1 for c in password if c.isupper())
 
-    print(f"\n  Composition :")
+    print("\n  Composition :")
     print(f"    Chiffres         : {digits}")
     print(f"    Spéciaux         : {special}")
     print(f"    Minuscules       : {lower}")
