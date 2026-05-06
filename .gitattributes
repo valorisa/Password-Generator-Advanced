@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.py text diff=python
+*.pyi text diff=python
+
+*.md text diff=markdown
+*.yml text
+*.yaml text
+*.json text
+*.toml text
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+poetry.lock -diff linguist-generated=true

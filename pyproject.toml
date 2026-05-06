@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "Password-Generator-Advanced"
+version = "1.0.0"
+description = "Générateur de mots de passe avec un menu interactif et obligation pour la création des mots de passe d'avoir des lettres minuscules, majuscules, chiffres, caractères spéciaux et un minimum de 9 chiffres et 9 caractères spéciaux."
+authors = ["valorisa"]
+packages = [{include = "password_generator_advanced", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.0"
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

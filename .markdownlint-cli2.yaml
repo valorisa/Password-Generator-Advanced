@@ -1,0 +1,47 @@
+# Markdownlint configuration for Password-Generator-Advanced
+# See https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+config:
+  # Line length - 120 chars minimum, relaxed for URLs/tables/code
+  MD013:
+    line_length: 120
+    heading_line_length: 120
+    code_block_line_length: 250
+    tables: false
+    strict: false
+
+  # Headings
+  MD001: true
+  MD003:
+    style: "atx"
+  MD022:
+    lines_above: 1
+    lines_below: 1
+  MD023: true
+
+  # Blanks around elements - relaxed for generated content
+  MD031: false
+  MD032: false
+
+  # Links - disable fragment validation (French accented anchors are valid on GitHub)
+  MD051: false
+
+  # Tables - disable compact style check (generated tables use compact pipes)
+  MD058: false
+  MD060: false
+
+  # Code blocks - language not always needed for output examples
+  MD040: false
+
+  # Lists
+  MD005: true
+  MD007: false
+  MD029: false
+
+  # Files
+  MD012:
+    maximum: 2
+  MD047: true
+
+  # Inline HTML (badges use img tags sometimes)
+  MD033: false
