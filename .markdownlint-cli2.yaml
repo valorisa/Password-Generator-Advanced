@@ -1,14 +1,12 @@
 # Markdownlint configuration for Password-Generator-Advanced
 # See https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 
+ignores:
+  - ".pytest_cache/**"
+
 config:
-  # Line length - 120 chars minimum, relaxed for URLs/tables/code
-  MD013:
-    line_length: 120
-    heading_line_length: 120
-    code_block_line_length: 250
-    tables: false
-    strict: false
+  # Line length - disabled (paragraphs stay on one line)
+  MD013: false
 
   # Headings
   MD001: true

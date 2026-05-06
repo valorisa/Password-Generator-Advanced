@@ -9,4 +9,4 @@ Follows [Keep a Changelog 1.1.0](https://keepachangelog.com/) and [SemVer 2.0.0]
 ### Added
 
 - Initial release of Password-Generator-Advanced
-- Générateur de mots de passe avec un menu interactif et obligation pour la création des mots de passe d'avoir des lettres minuscules, majuscules, chiffres, caractères spéciaux et un minimum de 9 chiffres et 9 caractères spéciaux.
+- Générateur de mots de passe sécurisés avec menu interactif, contraintes strictes (min. 9 chiffres, 9 caractères spéciaux, 1 minuscule, 1 majuscule) et module `secrets` (CSPRNG)
