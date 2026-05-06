@@ -4,13 +4,21 @@
 ![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg?logo=python&logoColor=white)
 ![Security: secrets](https://img.shields.io/badge/Security-secrets%20module-green.svg)
 
-Générateur de mots de passe sécurisés en ligne de commande avec des contraintes cryptographiques strictes. Chaque mot de passe généré contient obligatoirement des lettres minuscules, majuscules, chiffres et caractères spéciaux, avec un minimum garanti de 9 chiffres et 9 caractères spéciaux.
+Générateur de mots de passe sécurisés en ligne de commande avec des contraintes cryptographiques strictes. Chaque mot de passe généré contient obligatoirement des lettres minuscules, majuscules, chiffres et caractères spéciaux, avec des minimums configurables.
 
 ---
 
-## Pourquoi ce projet ?
+## Fonctionnalités
 
-La plupart des générateurs de mots de passe ne garantissent pas la présence de chaque catégorie de caractères. Password-Generator-Advanced applique des **contraintes strictes et non-négociables** à chaque génération :
+- Génération de mots de passe avec contraintes strictes (configurable)
+- Génération de passphrases (style Diceware, 2048 mots, 11 bits d'entropie par mot)
+- Évaluation de la force d'un mot de passe ou passphrase existant
+- Copie dans le presse-papier (Windows, macOS, Linux)
+- Mode interactif (menu) et mode CLI (arguments en ligne de commande)
+
+---
+
+## Contraintes par défaut
 
 | Contrainte | Minimum garanti |
 |------------|-----------------|
@@ -20,7 +28,9 @@ La plupart des générateurs de mots de passe ne garantissent pas la présence d
 | Lettres majuscules (A-Z) | 1 |
 | **Longueur minimale totale** | **20 caractères** |
 
-Le module Python `secrets` est utilisé pour la génération (CSPRNG — Cryptographically Secure Pseudo-Random Number Generator), contrairement à `random` qui n'est pas adapté à un usage sécuritaire.
+Les contraintes de chiffres et caractères spéciaux sont paramétrables via `--min-digits` et `--min-special`.
+
+Le module Python `secrets` est utilisé pour la génération (CSPRNG — Cryptographically Secure Pseudo-Random Number Generator).
 
 ---
 
@@ -43,8 +53,10 @@ poetry install
 
 ## Utilisation
 
+### Mode interactif
+
 ```bash
-poetry run python -m password_generator_advanced
+python -m password_generator_advanced
 ```
 
 Le menu interactif s'affiche :
@@ -64,31 +76,80 @@ Contraintes appliquées :
 --------------------------------------------------
   1 - Générer un mot de passe
   2 - Générer plusieurs mots de passe
-  3 - Quitter
+  3 - Générer une passphrase
+  4 - Évaluer un mot de passe / passphrase
+  5 - Quitter
 --------------------------------------------------
-
-  Votre choix (1-3) :
 ```
 
-### Générer un mot de passe unique
+### Mode CLI
 
-Choisissez `1`, puis indiquez la longueur souhaitée (minimum 20). Le mot de passe est affiché avec sa composition détaillée :
+```bash
+# Générer un mot de passe (longueur 30)
+python -m password_generator_advanced --length 30
+
+# Générer 5 mots de passe
+python -m password_generator_advanced --length 25 --count 5
+
+# Contraintes personnalisées
+python -m password_generator_advanced --length 20 --min-digits 3 --min-special 5
+
+# Générer une passphrase (6 mots par défaut)
+python -m password_generator_advanced --passphrase
+
+# Passphrase avec options
+python -m password_generator_advanced --passphrase --words 8 --separator "."
+
+# Évaluer un mot de passe existant
+python -m password_generator_advanced --evaluate "mon-super-mot-de-passe!"
+
+# Copier le résultat dans le presse-papier
+python -m password_generator_advanced --length 25 --copy
+```
+
+### Options CLI complètes
+
+| Option | Court | Description |
+|--------|-------|-------------|
+| `--length` | `-l` | Longueur du mot de passe |
+| `--min-digits` | | Nombre minimum de chiffres (défaut: 9) |
+| `--min-special` | | Nombre minimum de caractères spéciaux (défaut: 9) |
+| `--count` | `-n` | Nombre de mots de passe à générer |
+| `--passphrase` | `-p` | Générer une passphrase |
+| `--words` | `-w` | Nombre de mots pour la passphrase (défaut: 6) |
+| `--separator` | | Séparateur pour la passphrase (défaut: `-`) |
+| `--evaluate` | `-e` | Évaluer la force d'un mot de passe |
+| `--copy` | `-c` | Copier dans le presse-papier |
+
+---
+
+## Évaluation de mot de passe
+
+L'outil peut évaluer la force d'un mot de passe ou passphrase existant :
 
 ```
-  Mot de passe généré :
-  k7$2!mR9@4#8^1&5*3%6Qw
-  Longueur : 23 caractères
+  Évaluation :
+    Longueur         : 28 caractères
+    Entropie         : 164.0 bits
+    Force            : Très fort
+    Jeu de caractères: 58 symboles possibles
 
-  Composition :
-    Chiffres         : 9
-    Spéciaux         : 10
-    Minuscules       : 2
-    Majuscules       : 2
+  Catégories détectées :
+    Minuscules       : ✓
+    Majuscules       : ✗
+    Chiffres         : ✗
+    Spéciaux         : ✓
 ```
 
-### Générer plusieurs mots de passe
+Échelle de force :
 
-Choisissez `2`, indiquez la longueur puis le nombre souhaité (1 à 50).
+| Entropie | Force |
+|----------|-------|
+| < 40 bits | Très faible |
+| 40-59 bits | Faible |
+| 60-79 bits | Moyen |
+| 80-127 bits | Fort |
+| ≥ 128 bits | Très fort |
 
 ---
 
@@ -99,24 +160,29 @@ Password-Generator-Advanced/
 ├── src/
 │   └── password_generator_advanced/
 │       ├── __init__.py          # Version du package
-│       ├── main.py              # Menu interactif CLI
-│       └── generator.py         # Algorithme de génération
+│       ├── __main__.py          # Point d'entrée python -m
+│       ├── main.py              # Menu interactif + CLI argparse
+│       ├── generator.py         # Algorithme de génération + évaluation
+│       ├── wordlist.py          # Liste de 2048 mots pour passphrases
+│       └── clipboard.py         # Copie presse-papier cross-platform
 ├── tests/
+│   └── test_generator.py       # 18 tests
 ├── pyproject.toml               # Configuration Poetry
 ├── LICENSE                      # MIT
 ├── SECURITY.md
 ├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-└── CHANGELOG.md
+└── CODE_OF_CONDUCT.md
 ```
 
 ### Algorithme de génération (`generator.py`)
 
-1. **Placement garanti** : 9 chiffres + 9 caractères spéciaux + 1 minuscule + 1 majuscule sont placés en premier
+1. **Placement garanti** : N chiffres + N caractères spéciaux + 1 minuscule + 1 majuscule sont placés en premier
 2. **Remplissage** : Les positions restantes sont remplies avec un mélange aléatoire de toutes les catégories
 3. **Mélange final** : L'ensemble est mélangé via `secrets.SystemRandom().shuffle()` pour éliminer tout pattern positionnel prévisible
 
-Cette approche garantit mathématiquement le respect des contraintes tout en maximisant l'entropie du résultat.
+### Génération de passphrases
+
+Sélection aléatoire de mots depuis une liste de 2048 mots (11 bits d'entropie par mot). Une passphrase de 6 mots offre ~66 bits d'entropie.
 
 ---
 
