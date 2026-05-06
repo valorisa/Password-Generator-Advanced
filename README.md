@@ -118,20 +118,20 @@ python -m password_generator_advanced --length 25 --copy
 | `--passphrase` | `-p` | Générer une passphrase |
 | `--words` | `-w` | Nombre de mots pour la passphrase (défaut: 6) |
 | `--separator` | | Séparateur pour la passphrase (défaut: `-`) |
-| `--evaluate` | `-e` | Évaluer la force d'un mot de passe |
+| `--evaluate` | `-e` | Évaluer l'entropie théorique d'un mot de passe |
 | `--copy` | `-c` | Copier dans le presse-papier |
 
 ---
 
 ## Évaluation de mot de passe
 
-L'outil peut évaluer la force d'un mot de passe ou passphrase existant :
+L'outil peut évaluer l'entropie théorique maximale d'un mot de passe ou passphrase existant :
 
 ```
-  Évaluation :
+  Entropie théorique maximale :
     Longueur         : 28 caractères
-    Entropie         : 164.0 bits
-    Force            : Très fort
+    Entropie max.    : 164.0 bits
+    Niveau           : Très fort
     Jeu de caractères: 58 symboles possibles
 
   Catégories détectées :
@@ -139,15 +139,19 @@ L'outil peut évaluer la force d'un mot de passe ou passphrase existant :
     Majuscules       : ✗
     Chiffres         : ✗
     Spéciaux         : ✓
+
+  ⚠ Ce calcul suppose un choix aléatoire par caractère.
+    Un mot de passe basé sur des mots du dictionnaire ou des
+    patterns prévisibles aura une entropie réelle inférieure.
 ```
 
-Échelle de force :
+Seuils (alignés sur les recommandations ANSSI) :
 
-| Entropie | Force |
-|----------|-------|
-| < 40 bits | Très faible |
-| 40-59 bits | Faible |
-| 60-79 bits | Moyen |
+| Entropie | Niveau |
+|----------|--------|
+| < 48 bits | Très faible |
+| 48-63 bits | Faible |
+| 64-79 bits | Moyen |
 | 80-127 bits | Fort |
 | ≥ 128 bits | Très fort |
 
