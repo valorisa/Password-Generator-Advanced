@@ -80,9 +80,9 @@ def evaluate_password(password: str) -> dict:
         strength = "Très fort"
     elif entropy >= 80:
         strength = "Fort"
-    elif entropy >= 60:
+    elif entropy >= 64:
         strength = "Moyen"
-    elif entropy >= 40:
+    elif entropy >= 48:
         strength = "Faible"
     else:
         strength = "Très faible"

@@ -119,16 +119,19 @@ def display_passphrase(passphrase: str, num_words: int):
 
 
 def display_evaluation(result: dict):
-    print("\n  Évaluation :")
+    print("\n  Entropie théorique maximale :")
     print(f"    Longueur         : {result['length']} caractères")
-    print(f"    Entropie         : {result['entropy']} bits")
-    print(f"    Force            : {result['strength']}")
+    print(f"    Entropie max.    : {result['entropy']} bits")
+    print(f"    Niveau           : {result['strength']}")
     print(f"    Jeu de caractères: {result['charset_size']} symboles possibles")
     print("\n  Catégories détectées :")
     print(f"    Minuscules       : {'✓' if result['has_lower'] else '✗'}")
     print(f"    Majuscules       : {'✓' if result['has_upper'] else '✗'}")
     print(f"    Chiffres         : {'✓' if result['has_digits'] else '✗'}")
     print(f"    Spéciaux         : {'✓' if result['has_special'] else '✗'}")
+    print("\n  ⚠ Ce calcul suppose un choix aléatoire par caractère.")
+    print("    Un mot de passe basé sur des mots du dictionnaire ou des")
+    print("    patterns prévisibles aura une entropie réelle inférieure.")
 
 
 def interactive_mode(min_digits: int, min_special: int):
