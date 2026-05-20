@@ -2,6 +2,8 @@
 
 > 🇺🇸 English version | 🇫🇷 [Version française](README.md)
 
+[![CI](https://github.com/valorisa/Password-Generator-Advanced/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/Password-Generator-Advanced/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/Password-Generator-Advanced.svg)](https://pypi.org/project/Password-Generator-Advanced/)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg?logo=python&logoColor=white)
 ![Security: secrets](https://img.shields.io/badge/Security-secrets%20module-green.svg)
