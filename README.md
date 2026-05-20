@@ -1,5 +1,7 @@
 # Password-Generator-Advanced
 
+> 🇫🇷 Version française | 🇺🇸 [English version](README.en.md)
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg?logo=python&logoColor=white)
 ![Security: secrets](https://img.shields.io/badge/Security-secrets%20module-green.svg)
