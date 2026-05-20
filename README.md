@@ -8,6 +8,65 @@ Générateur de mots de passe sécurisés en ligne de commande avec des contrain
 
 ---
 
+## Installation Rapide
+
+**Password-Generator-Advanced est disponible sur PyPI !** N'importe qui peut l'installer directement avec pip :
+
+```bash
+pip install Password-Generator-Advanced
+```
+
+Une fois installé, lancez simplement :
+
+```bash
+password-generator-advanced
+```
+
+Le package est compatible avec **Python 3.12+** et fonctionne sur Linux, macOS et Windows.
+
+**Que fait cette commande ?**
+- Télécharge automatiquement la dernière version stable depuis PyPI
+- Installe le package dans votre environnement Python
+- Rend la commande `password-generator-advanced` disponible globalement
+
+**Mise à jour vers la dernière version :**
+
+```bash
+pip install --upgrade Password-Generator-Advanced
+```
+
+**Installation dans un environnement virtuel (recommandé) :**
+
+```bash
+# Créer un environnement virtuel
+python -m venv venv
+
+# Activer l'environnement
+# Sur Linux/macOS :
+source venv/bin/activate
+# Sur Windows :
+venv\Scripts\activate
+
+# Installer le package
+pip install Password-Generator-Advanced
+```
+
+### Alternative : Installation depuis les sources
+
+Si vous souhaitez contribuer au projet ou utiliser la version de développement :
+
+```bash
+git clone https://github.com/valorisa/Password-Generator-Advanced.git
+cd Password-Generator-Advanced
+poetry install
+```
+
+**Prérequis pour l'installation depuis les sources :**
+- Python 3.12 ou supérieur
+- Poetry (gestionnaire de dépendances)
+
+---
+
 ## Fonctionnalités
 
 - Génération de mots de passe avec contraintes strictes (configurable)
@@ -34,30 +93,23 @@ Le module Python `secrets` est utilisé pour la génération (CSPRNG — Cryptog
 
 ---
 
-## Installation
-
-### Prérequis
-
-- Python 3.12 ou supérieur
-- Poetry (gestionnaire de dépendances)
-
-### Étapes
-
-```bash
-git clone https://github.com/valorisa/Password-Generator-Advanced.git
-cd Password-Generator-Advanced
-poetry install
-```
-
----
-
 ## Utilisation
 
 ### Mode interactif
 
+**Si vous avez installé via pip depuis PyPI :**
+
+```bash
+password-generator-advanced
+```
+
+**Si vous utilisez l'installation depuis les sources (avec Poetry) :**
+
 ```bash
 python -m password_generator_advanced
 ```
+
+*Note : Les deux commandes sont équivalentes et lancent le même programme.*
 
 Le menu interactif s'affiche :
 
