@@ -9,7 +9,7 @@ packages = [{include = "password_generator_advanced", from = "src"}]
 python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.3.0"
+ruff = ">=0.3,<0.16"
 pytest = "^8.0.0"
 
 [build-system]
