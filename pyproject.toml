@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "Password-Generator-Advanced"
-version = "1.0.1"
-description = "Générateur de mots de passe avec un menu interactif et obligation pour la création des mots de passe d'avoir des lettres minuscules, majuscules, chiffres, caractères spéciaux et un minimum de 9 chiffres et 9 caractères spéciaux."
+version = "1.0.2"
+description = "Secure command-line password generator with strict cryptographic constraints. Interactive menu and CLI modes. Passphrase generation. Entropy evaluation. Cross-platform clipboard support."
 authors = ["valorisa"]
+readme = "README.md"
 packages = [{include = "password_generator_advanced", from = "src"}]
 
 [tool.poetry.scripts]
