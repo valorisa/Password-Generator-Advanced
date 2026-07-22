@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Password-Generator-Advanced"
-version = "1.0.2"
+version = "1.0.3"
 description = "Secure command-line password generator with strict cryptographic constraints. Interactive menu and CLI modes. Passphrase generation. Entropy evaluation. Cross-platform clipboard support."
 authors = ["valorisa"]
 readme = "README.md"
