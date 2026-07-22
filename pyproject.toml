@@ -10,7 +10,7 @@ packages = [{include = "password_generator_advanced", from = "src"}]
 password-generator-advanced = "password_generator_advanced.__main__:main"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.14"
 
 [tool.poetry.group.dev.dependencies]
 ruff = ">=0.3,<0.16"
