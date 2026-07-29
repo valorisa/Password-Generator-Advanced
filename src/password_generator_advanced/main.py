@@ -1,8 +1,8 @@
 """Menu interactif et CLI du générateur de mots de passe."""
 
 import argparse
-import sys
 import os
+import sys
 
 if sys.platform == "win32":
     os.system("")
