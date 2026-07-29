@@ -11,7 +11,6 @@ from password_generator_advanced.generator import (
     minimum_length,
 )
 
-
 MIN_LENGTH = minimum_length(DEFAULT_MIN_DIGITS, DEFAULT_MIN_SPECIAL)
 
 
