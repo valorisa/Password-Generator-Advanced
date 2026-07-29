@@ -6,7 +6,6 @@ import string
 
 from .wordlist import WORDLIST
 
-
 DEFAULT_MIN_DIGITS = 9
 DEFAULT_MIN_SPECIAL = 9
 
