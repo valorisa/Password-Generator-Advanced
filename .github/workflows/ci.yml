@@ -7,6 +7,7 @@ on:
       - 'v*'
   pull_request:
     branches: [main]
+  workflow_dispatch:        # déclenchement manuel (bouton "Run workflow")
 
 # SÉCURITÉ : permissions minimales — lecture seule par défaut.
 permissions:
