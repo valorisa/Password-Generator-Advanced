@@ -16,7 +16,37 @@ jobs:
         with:
           python-version: '3.14'
       - run: pip install poetry && poetry install
-      - run: poetry run ruff check .
+
+      - name: Apply ruff auto-fixes (non-blocking)
+        run: |
+          poetry run ruff check . --fix || true
+
+      - name: Show git diff (ruff fixes)
+        run: |
+          echo "=== fichiers modifiés ==="
+          git --no-pager diff --name-only || true
+          echo "=== patch complet ==="
+          git --no-pager diff || true
+
+      - name: Commit & push fixes (only on PR)
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "ci: apply ruff --fix (auto)"
+            git push origin HEAD:refs/heads/${{ github.head_ref }} || true
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Run ruff check (fail on remaining issues)
+        run: |
+          poetry run ruff check .
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +56,7 @@ jobs:
           python-version: '3.14'
       - run: pip install poetry && poetry install
       - run: poetry run pytest tests/ -v
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +66,7 @@ jobs:
           python-version: '3.14'
       - run: pip install poetry && poetry install
       - run: poetry build
+
   release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
