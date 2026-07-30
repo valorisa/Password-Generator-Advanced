@@ -61,6 +61,17 @@ jobs:
       - name: Build package
         run: poetry build
 
+  # TODO angle-i : a faire au PROCHAIN bump, pas avant.
+  # Ajouter, AVANT `poetry build`, une verification des versions :
+  #   1) version du tag = ${GITHUB_REF#refs/tags/v}
+  #   2) pyproject.toml = `poetry version --short`
+  #   3) __init__.py    = __version__ dans
+  #      src/password_generator_advanced/__init__.py
+  # Si une des trois ne concorde pas : exit 1 (alarme qui bloque).
+  # Decision : option "Verifier", on GARDE __version__.
+  # Le controle doit ECHOUER (exit 1) hors tag, PAS se taire
+  # (donc pas de `if:` qui saute silencieusement).
+  # Contexte et "pourquoi plus tard" : voir note angle-i.
   release:
     runs-on: ubuntu-latest
     # Publication uniquement sur push de tag v*.
